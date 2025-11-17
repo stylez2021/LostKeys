@@ -11,44 +11,46 @@ var typing_speed: float = 0.05  # Seconds per character
 var typing: bool = false
 
 func _ready():
-	if continue_button:
-		continue_button.hide()
+	print("TextBox _ready called")
+	print("text_label node: ", text_label)
+	print("text_label type: ", text_label.get_class() if text_label else "NULL")
+	print("DialoguePanel children: ", $DialoguePanel.get_children())
+	continue_button.hide()
 
 func show_text(text: String):
+	print("show_text called with: ", text)  # ADD THIS
 	full_text = text
 	current_char = 0
 	text_label.text = ""
+	print("text_label exists: ", text_label != null)  # ADD THIS
 	show()
-	if continue_button:
-		continue_button.hide()
+	continue_button.hide()
 	typing = true
 	start_typing()
 
 func start_typing():
+	print("start_typing called, text length: ", full_text.length())
 	while current_char < full_text.length() and typing:
-		text_label.text += full_text[current_char]
+		# Instead of += let's rebuild the whole string
+		text_label.text = full_text.substr(0, current_char + 1)
+		print("Current text: ", text_label.text)
 		current_char += 1
-		
-		# Auto-scroll to bottom
 		await get_tree().create_timer(typing_speed).timeout
-		text_label.scroll_to_line(text_label.get_line_count())
 	
 	# Text finished typing
+	print("Typing finished!")
 	typing = false
-	if continue_button:
-		continue_button.show()
+	continue_button.show()
 
 func _on_continue_button_pressed():
 	text_finished.emit()
 	hide()
 
 func _input(event):
+	# Click anywhere to skip typing
 	if event is InputEventMouseButton and event.pressed and typing:
 		if current_char < full_text.length():
-			# Skip to end
 			text_label.text = full_text
 			current_char = full_text.length()
 			typing = false
-			text_label.scroll_to_line(text_label.get_line_count())
-			if continue_button:
-				continue_button.show()
+			continue_button.show()

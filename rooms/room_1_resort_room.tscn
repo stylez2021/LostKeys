@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://di7csxt6j5jky"]
+[gd_scene load_steps=4 format=3 uid="uid://di7csxt6j5jky"]
 
 [ext_resource type="Script" uid="uid://bwe7nemhvuvba" path="res://rooms/room_1_resort_room.gd" id="1_o8sd7"]
 [ext_resource type="Texture2D" uid="uid://bxmj4c2072q40" path="res://Assets/Backgrounds/room1.png" id="1_odlbp"]
+[ext_resource type="PackedScene" uid="uid://q703k3clumb7" path="res://ui/text_box.tscn" id="3_xp2wb"]
 
 [node name="Room1_ResortRoom" type="Node2D"]
 script = ExtResource("1_o8sd7")
@@ -10,3 +11,9 @@ script = ExtResource("1_o8sd7")
 scale = Vector2(0.755208, 0.633789)
 texture = ExtResource("1_odlbp")
 centered = false
+
+[node name="TextBox" parent="." instance=ExtResource("3_xp2wb")]
+offset_left = 590.0
+offset_top = 633.0
+offset_right = 590.0
+offset_bottom = 633.0

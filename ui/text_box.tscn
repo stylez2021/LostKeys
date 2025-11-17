@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvpv1e8uyuyfg"]
+[gd_scene load_steps=3 format=3 uid="uid://q703k3clumb7"]
 
-[ext_resource type="Script" uid="uid://bnqt5rjntpadg" path="res://ui/text_box.gd" id="1_7i4yi"]
+[ext_resource type="Script" uid="uid://2umujjhvw3y4" path="res://ui/text_box.gd" id="1_7i4yi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7i4yi"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 0.713726)
 
 [node name="TextBox" type="Control"]
 layout_mode = 3
@@ -12,14 +15,31 @@ grow_vertical = 2
 script = ExtResource("1_7i4yi")
 
 [node name="DialoguePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 250)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -648.0
+offset_top = -223.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7i4yi")
+
+[node name="TextLabel" type="RichTextLabel" parent="DialoguePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 24
+metadata/_edit_use_anchors_ = true
 
 [node name="ContinueButton" type="Button" parent="DialoguePanel"]
 layout_mode = 1
@@ -28,22 +48,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -79.0
-offset_top = -31.0
+offset_left = -94.0
+offset_top = -46.0
+offset_right = -15.0
+offset_bottom = -15.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Continue
-"
-
-[node name="TextLabel" type="RichTextLabel" parent="DialoguePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-scroll_following = true
+text = "Continue"
 
 [connection signal="pressed" from="DialoguePanel/ContinueButton" to="." method="_on_continue_button_pressed"]
