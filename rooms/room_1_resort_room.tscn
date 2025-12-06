@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://di7csxt6j5jky"]
+[gd_scene load_steps=5 format=3 uid="uid://di7csxt6j5jky"]
 
 [ext_resource type="Script" uid="uid://bwe7nemhvuvba" path="res://rooms/room_1_resort_room.gd" id="1_o8sd7"]
 [ext_resource type="Texture2D" uid="uid://bxmj4c2072q40" path="res://Assets/Backgrounds/room1.png" id="1_odlbp"]
 [ext_resource type="PackedScene" uid="uid://q703k3clumb7" path="res://ui/text_box.tscn" id="3_xp2wb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xp2wb"]
+size = Vector2(235, 129.5)
 
 [node name="Room1_ResortRoom" type="Node2D"]
 script = ExtResource("1_o8sd7")
@@ -17,3 +20,11 @@ offset_left = 590.0
 offset_top = 633.0
 offset_right = 590.0
 offset_bottom = 633.0
+
+[node name="DresserHotspot" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DresserHotspot"]
+position = Vector2(535.5, 327.75)
+shape = SubResource("RectangleShape2D_xp2wb")
+
+[connection signal="input_event" from="DresserHotspot" to="." method="_on_dresser_hotspot_input_event"]

@@ -1,11 +1,13 @@
 extends Node2D
 
 @onready var text_box = $TextBox
+@onready var dresser = $DresserHotspot
 
 var first_visit: bool = true
 
 func _ready():
 	text_box.hide()  # Start hidden
+	dresser.hide()
 	
 	# Connect the text_finished signal
 	text_box.text_finished.connect(_on_text_finished)
@@ -22,4 +24,15 @@ func show_opening_text():
 func _on_text_finished():
 	# Text box closed, player can now interact with room
 	print("Player can now interact with the room")
+	dresser.show()
 	# We'll add hotspot enabling here later
+
+
+func _on_dresser_hotspot_input_event(viewport, event, shape_idx):
+	# Check if it's a mouse click
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		on_dresser_clicked()
+
+func on_dresser_clicked():
+	print("Dresser clicked!")
+	text_box.show_text("Check out this dope ass dresser! So much lube.")
