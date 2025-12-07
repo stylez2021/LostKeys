@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://di7csxt6j5jky"]
+[gd_scene load_steps=8 format=3 uid="uid://di7csxt6j5jky"]
 
 [ext_resource type="Script" uid="uid://bwe7nemhvuvba" path="res://rooms/room_1_resort_room.gd" id="1_o8sd7"]
 [ext_resource type="Texture2D" uid="uid://bxmj4c2072q40" path="res://Assets/Backgrounds/room1.png" id="1_odlbp"]
@@ -6,6 +6,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xp2wb"]
 size = Vector2(235, 129.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4xvb"]
+size = Vector2(163.75, 347)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lna70"]
+size = Vector2(242.5, 229)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jav7j"]
+size = Vector2(105.5, 289)
 
 [node name="Room1_ResortRoom" type="Node2D"]
 script = ExtResource("1_o8sd7")
@@ -27,4 +36,25 @@ offset_bottom = 633.0
 position = Vector2(535.5, 327.75)
 shape = SubResource("RectangleShape2D_xp2wb")
 
+[node name="BathroomHotspot" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BathroomHotspot"]
+position = Vector2(994.875, 276.5)
+shape = SubResource("RectangleShape2D_e4xvb")
+
+[node name="WindowHotspot" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowHotspot"]
+position = Vector2(207, 199)
+shape = SubResource("RectangleShape2D_lna70")
+
+[node name="DoorHotspot" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorHotspot"]
+position = Vector2(756.25, 263.5)
+shape = SubResource("RectangleShape2D_jav7j")
+
 [connection signal="input_event" from="DresserHotspot" to="." method="_on_dresser_hotspot_input_event"]
+[connection signal="input_event" from="BathroomHotspot" to="." method="_on_bathroom_hotspot_input_event"]
+[connection signal="input_event" from="WindowHotspot" to="." method="_on_window_hotspot_input_event"]
+[connection signal="input_event" from="DoorHotspot" to="." method="_on_door_hotspot_input_event"]
