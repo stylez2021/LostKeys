@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://di7csxt6j5jky"]
+[gd_scene load_steps=9 format=3 uid="uid://di7csxt6j5jky"]
 
 [ext_resource type="Script" uid="uid://bwe7nemhvuvba" path="res://rooms/room_1_resort_room.gd" id="1_o8sd7"]
 [ext_resource type="Texture2D" uid="uid://bxmj4c2072q40" path="res://Assets/Backgrounds/room1.png" id="1_odlbp"]
 [ext_resource type="PackedScene" uid="uid://q703k3clumb7" path="res://ui/text_box.tscn" id="3_xp2wb"]
+[ext_resource type="PackedScene" uid="uid://cpei0630cdiwf" path="res://rooms/dresser_zoom.tscn" id="4_e4xvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xp2wb"]
 size = Vector2(235, 129.5)
@@ -53,6 +54,8 @@ shape = SubResource("RectangleShape2D_lna70")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorHotspot"]
 position = Vector2(756.25, 263.5)
 shape = SubResource("RectangleShape2D_jav7j")
+
+[node name="DresserZoom" parent="." instance=ExtResource("4_e4xvb")]
 
 [connection signal="input_event" from="DresserHotspot" to="." method="_on_dresser_hotspot_input_event"]
 [connection signal="input_event" from="BathroomHotspot" to="." method="_on_bathroom_hotspot_input_event"]

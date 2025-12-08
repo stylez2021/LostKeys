@@ -47,10 +47,19 @@ func _on_continue_button_pressed():
 	hide()
 
 func _input(event):
-	# Click anywhere to skip typing
-	if event is InputEventMouseButton and event.pressed and typing:
-		if current_char < full_text.length():
+	# func _input(event):
+	if not visible:
+		return
+	
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		# Check if typing - skip to end
+		if typing and current_char < full_text.length():
 			text_label.text = full_text
 			current_char = full_text.length()
 			typing = false
 			continue_button.show()
+			get_viewport().set_input_as_handled()  # Consume the click
+		# If done typing - close textbox (consume click so hotspots don't trigger)
+		elif not typing:
+			_on_continue_button_pressed()
+			get_viewport().set_input_as_handled()  # Consume the click

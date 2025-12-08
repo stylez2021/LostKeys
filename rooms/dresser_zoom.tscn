@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpei0630cdiwf"]
+
+[ext_resource type="Script" uid="uid://ue2g1niceuso" path="res://rooms/dresser_zoom.gd" id="1_brjlf"]
+[ext_resource type="Texture2D" uid="uid://ctoxjo3rwemrw" path="res://Assets/Backgrounds/DresserCloseUp.png" id="2_wqo71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwls8"]
+size = Vector2(251.448, 120.687)
+
+[node name="DresserZoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_brjlf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.750433, 0.637322)
+texture = ExtResource("2_wqo71")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 976.0
+offset_top = 566.0
+offset_right = 1119.0
+offset_bottom = 629.0
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[node name="FlyerHotspot" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyerHotspot"]
+position = Vector2(459, 316)
+skew = 0.823795
+shape = SubResource("RectangleShape2D_dwls8")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="input_event" from="FlyerHotspot" to="." method="_on_flyer_hotspot_input_event"]
