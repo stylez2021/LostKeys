@@ -6,17 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwls8"]
 size = Vector2(251.448, 120.687)
 
-[node name="DresserZoom" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="DresserZoom" type="CanvasLayer"]
+layer = 10
 script = ExtResource("1_brjlf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,7 +24,6 @@ expand_mode = 1
 stretch_mode = 2
 
 [node name="BackButton" type="Button" parent="."]
-layout_mode = 0
 offset_left = 976.0
 offset_top = 566.0
 offset_right = 1119.0
